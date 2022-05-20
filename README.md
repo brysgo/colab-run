@@ -24,7 +24,8 @@ Run with
 
 ## Todos
 
-- [ ] make colab-run actually run the script
+- [x] make colab-run actually run the script
 - [ ] support custom text in dropdown
 - [ ] support range checking
 - [ ] add runtime support for pretty colab things
+- [ ] add support for yaml instead of cli args (thanks mike)

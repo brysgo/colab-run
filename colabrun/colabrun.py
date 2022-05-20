@@ -61,10 +61,12 @@ def _codemod_impl(proc_name: str, command_args: List[str]) -> int:  # noqa: C901
         "path",
         metavar="PATH",
         nargs="+",
-        help=(
-            "Path to codemod. Can be a directory, file, or multiple of either. To "
-            + 'instead read from stdin and write to stdout, use "-"'
-        ),
+        help=("Path to an exported colab .py file"),
+    )
+    parser.add_argument(
+        "--print",
+        action=argparse.BooleanOptionalAction,
+        help="Print the updated code instead of running it",
     )
     args, _ = parser.parse_known_args(command_args)
     command_class = ConvertColabMetadataCommand
@@ -98,7 +100,12 @@ def _codemod_impl(proc_name: str, command_args: List[str]) -> int:  # noqa: C901
         "path",
         metavar="PATH",
         type=str,
-        help="Path to initialize with a default LibCST codemod configuration",
+        help="Path to an exported colab .py file",
+    )
+    full_parser.add_argument(
+        "--print",
+        action=argparse.BooleanOptionalAction,
+        help="Print the updated code instead of running it",
     )
     args = full_parser.parse_args(command_args)
     codemod_args = {
@@ -135,7 +142,11 @@ def _codemod_impl(proc_name: str, command_args: List[str]) -> int:  # noqa: C901
         print("Failed to codemod from stdin", file=sys.stderr)
         return 1
 
-    print(newcode)
+    if codemod_args["print"]:
+        print(newcode)
+    else:
+        exec(newcode)
+
     return 0
 
 
