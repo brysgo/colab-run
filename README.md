@@ -20,7 +20,11 @@ Run with
 
 `colab-run ./path/to/colab.py --help` - prints available options for colab file
 
-`colab-run ./path/to/colab.py` - converts the file with options included (TODO: make this run the file instead)
+`colab-run ./path/to/colab.py` - run the file
+
+`colab-run ./path/to/colab.py --colabParam somevalue` - run the file with `colabParam` set to `somevalue`
+
+`colab-run ./path/to/colab.py --print` - print the file with the arguments (for debugging)
 
 ## Todos
 
