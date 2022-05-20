@@ -1,9 +1,12 @@
 [tool.poetry]
-name = "colab-run"
+name = "colabrun"
 version = "0.1.0"
 description = "run google colab from the cli"
 authors = ["Bryan Goldstein <brysgo@gmail.com>"]
 license = "MIT"
+
+[tool.poetry.scripts]
+colab-run = "colabrun.colabrun:cli"
 
 [tool.poetry.dependencies]
 python = ">3.7"
@@ -12,6 +15,7 @@ hjson = "^3.0.2"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.3.0", allow-prereleases = true}
+pytest = "^7.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

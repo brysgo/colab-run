@@ -9,13 +9,12 @@
 # python -m libcst.tool print python_file.py
 
 import argparse
-import importlib
 import os
 import os.path
 import sys
 from abc import abstractmethod
 from typing import Any, Dict, List
-from colab_metadata_transform.colab_metadata_transform import (
+from colabrun.colab_metadata_transform import (
     ConvertColabMetadataCommand,
 )
 
@@ -140,6 +139,10 @@ def _codemod_impl(proc_name: str, command_args: List[str]) -> int:  # noqa: C901
     return 0
 
 
+def cli():
+    main(sys.argv[0], sys.argv[1:])
+
+
 def main(proc_name: str, cli_args: List[str]) -> int:
     # Hack to allow "--help" to print out generic help, but also allow subcommands
     # to customize their parsing and help messages.
@@ -159,6 +162,4 @@ def main(proc_name: str, cli_args: List[str]) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(
-        main(os.environ.get("LIBCST_TOOL_COMMAND_NAME", "libcst.tool"), sys.argv[1:])
-    )
+    sys.exit()
